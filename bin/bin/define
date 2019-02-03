@@ -1,0 +1,4 @@
+#!/bin/bash
+#Looks up an English word
+
+$BROWSER http://dictionary.reference.com/browse/$1

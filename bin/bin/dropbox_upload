@@ -1,0 +1,51 @@
+#!/usr/bin/env python3
+
+import os
+import sys
+import dropbox
+import argparse
+import yaml
+from dropbox.files import WriteMode
+from dropbox.exceptions import ApiError, AuthError
+
+parser = argparse.ArgumentParser()
+parser.add_argument('local_file', help='The local file to upload')
+parser.add_argument('dropbox_file', help='The DropBox destination')
+args = parser.parse_args()
+
+config_file = os.path.expanduser('~/.config/dropbox/config')
+
+if '~' in args.local_file:
+    local_file = os.path.expanduser(args.local_file)
+else:
+    local_file = os.path.abspath(args.local_file)
+
+dropbox_file = args.dropbox_file
+
+with open(config_file, 'r') as f:
+    config_yaml = yaml.load(f)
+    token = config_yaml['Token']
+    
+dbx = dropbox.Dropbox(token)
+
+try:
+    dbx.users_get_current_account()
+except AuthError as err:
+    sys.exit("ERROR: Invalid access token; try re-generating an "
+        "access token from the app console on the web.")
+
+with open(local_file, 'rb') as f:
+    print("Uploading " + local_file + " to Dropbox as " + dropbox_file + "...")
+    try:
+        dbx.files_upload(f.read(), dropbox_file, mode=WriteMode('overwrite'))
+        print('Done')
+    except ApiError as err:
+        if (err.error.is_path() and
+                err.error.get_path().reason.is_insufficient_space()):
+            sys.exit("ERROR: Cannot back up; insufficient space.")
+        elif err.user_message_text:
+            print(err.user_message_text)
+            sys.exit()
+        else:
+            print(err)
+            sys.exit()

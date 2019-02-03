@@ -1,0 +1,6 @@
+#!/bin/bash
+# Updates pacman and runs a few backup commands
+
+sudo pacman -Syu && 
+pacman -Qqe > ~/.config/pacman/pkglist.txt && 
+$BROWSER 'archlinux.org'

@@ -1,0 +1,5 @@
+#!/bin/bash
+# Quickly search the arch wiki
+
+$BROWSER http://wiki.archlinux.org/index.php/$1
+

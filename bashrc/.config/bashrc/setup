@@ -1,0 +1,9 @@
+#
+# ~/.bashrc
+#
+# This file is generated automatically, don't edit
+# 
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+stty -ixon
+# set -o vi

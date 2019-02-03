@@ -1,0 +1,10 @@
+#!/bin/bash
+#A quick currency converter
+
+part1='http://www.xe.com/currencyconverter/convert/?Amount=' 
+
+part3='&From='
+
+part5='&To='
+
+$BROWSER $part1$1$part3$2$part5$3

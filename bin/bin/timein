@@ -1,0 +1,4 @@
+#!/bin/bash
+#Looks up the local time in any place
+
+$BROWSER http://www.timeanddate.com/worldclock/?query=$1

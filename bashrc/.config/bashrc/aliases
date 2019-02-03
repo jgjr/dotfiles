@@ -1,0 +1,59 @@
+alias count='ls -F |grep -v / | wc -l'
+alias dirsize='du -sh'
+# alias rmdir='rm -rfi'
+alias s1='sudo $(fc -ln -1)'
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias q='exit'
+alias :w='notify-send "Silly you!" "You were not using vim" && exit'
+alias :q='notify-send "Silly you!" "You were not using vim" && exit'
+alias :wq='notify-send "Silly you!" "You were not using vim" && exit'
+
+alias sv='sudo vim'
+alias v='vim .'
+
+alias sta='sudo systemctl start'
+alias sto='sudo systemctl stop'
+alias off='sudo poweroff'
+
+alias um='sudo umount'
+alias sm='sudo mount'
+
+alias ls='ls --color=auto'
+alias la='ls -a'
+alias ll='ls -lh'
+alias lal='ls -alh'
+
+alias pac='sudo pacman -S'
+alias addkey='gpg --recv-key'
+
+alias ga='git add . --all'
+alias gc='git commit -m'
+alias gpush='git push'
+alias gpull='git pull'
+
+alias brc='~/.config/bashrc/build.sh && source ~/.bashrc'
+alias xres='vim ~/.Xresources'
+alias sxres='xrdb ~/.Xresources'
+
+alias connectmysql='mysql -u root -p'
+alias phps='php -S localhost:8000/'
+alias phpst='php -S localhost:8000/ -t public/'
+alias art='php artisan'
+alias pregulpwatch='echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sy    sctl -p'
+
+alias i3config='vim ~/.config/i3/config'
+alias fe='feh -g 1920x1080 --image-bg black'
+alias youtubemp3='youtube-dl -x --audio-format mp3'
+alias spot='spotify --force-device-scale-factor=1.0000001'
+alias startcups='systemctl start org.cups.cupsd.service'
+
+alias strongpassword='gpg --gen-random --armor 1 14 | sed "s/.$//"'
+alias webresize='mogrify -strip -resize 1920x1920 -quality 80%'
+
+alias whatsmyip='curl ipinfo.io/ip'
+
+alias passwordsdb='dropbox_upload ~/documents/Notes/passwords.kdbx "/passwords.kdbx"'
+alias proj='cd ~/projects'

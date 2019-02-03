@@ -1,0 +1,59 @@
+"urxvt"
+  Mod4 + Return
+
+"chromium"
+  Mod4 + Shift + a
+
+"chromium --incognito"
+  Mod4 + Shift + p
+
+"rofi -show run"
+  Mod4 + d
+
+"~/.config/i3lock/lock.sh"
+  Mod4 + Shift + s
+
+"urxvt -e ranger"
+  Mod4 + Shift + z
+
+"Thunar"
+  Mod4 + Shift + x
+
+"thunderbird"
+  Mod4 + Shift + t
+
+"keepassx2"
+  Mod4 + Shift + k
+
+"~/.config/i3lock/lock.sh; systemctl suspend"
+  Mod4 + Shift + w
+
+"gnome-calculator"
+  Mod4 + Shift + g
+
+"light -A 10"
+  XF86MonBrightnessUp
+
+"light -U 10"
+  XF86MonBrightnessDown
+
+"pactl set-sink-volume @DEFAULT_SINK@ +2000"
+   XF86AudioRaiseVolume
+
+"pactl set-sink-volume @DEFAULT_SINK@ -2000"
+   XF86AudioLowerVolume
+
+"pactl set-sink-mute @DEFAULT_SINK@ toggle"
+   XF86AudioMute
+
+"clementine --play-pause"
+  XF86AudioPlay
+
+"clementine --next"
+  XF86AudioNext
+
+"clementine --previous"
+  XF86AudioPrev
+
+"scrot -d .25  -e 'mv $f ~/pictures/screenshots/'"
+  Print

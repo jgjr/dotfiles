@@ -1,0 +1,23 @@
+mkcd ()
+{
+    mkdir -p -- "$1" &&
+      cd -P -- "$1"
+}
+
+mvcd ()
+{
+    mv $1 $2 &&
+      cd "$2"
+}
+
+numberFiles()
+{
+    find . -type f | cat -n | while read n f; do mv "$f" "$n.$1"; done
+}
+
+gitdone()
+{
+    git add . --all;
+    git commit -m "$1";
+    git push;
+}

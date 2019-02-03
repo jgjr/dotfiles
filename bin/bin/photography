@@ -1,0 +1,34 @@
+#!/bin/bash
+#A script to create a directory structure for my photographic projects
+
+case $1 in
+--before)
+        mkdir edited
+        mkdir unedited
+        mkdir edited/large
+        mkdir edited/small
+        mkdir edited/large/colour
+        mkdir edited/large/black_and_white
+        mkdir edited/small/colour
+        mkdir edited/small/black_and_white
+        echo 'Directories created, have a nice day'
+	;;
+--after)
+	cp edited/large/colour/* edited/large/black_and_white
+	echo 'Large images copied to black_and_white directory'
+	mogrify -colorspace Gray edited/large/black_and_white/*.JPG
+	echo 'Large images converted to black and white'
+	cp edited/large/colour/* edited/small/colour
+	echo 'Large images copied to small colour directory'
+	mogrify -resize 1500x1500 edited/small/colour/*
+	echo 'Images in small directory resized to 1500x1500'
+	cp edited/small/colour/* edited/small/black_and_white
+	echo 'Small images copied to black_and_white directory'
+	mogrify -colorspace Gray edited/small/black_and_white/*.JPG
+	echo 'Small images converted to black and white'
+	echo 'All done!'	
+	zip -r edited.zip edited/
+	;;
+*)
+	echo 'Use the -b flag to create the directory structure and the -a flag to process the edited images'
+esac
