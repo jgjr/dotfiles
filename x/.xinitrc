@@ -55,6 +55,7 @@ compton --config ~/.config/compton.conf &
 xrandr --output VGA-1 --left-of LVDS-1 --output HDMI-1 --fbmm 530x300 --left-of VGA-1 &
 sh ~/.fehbg &
 clipit &
+nextcloud &
 pasystray &
 nm-applet &
 blueman-applet &

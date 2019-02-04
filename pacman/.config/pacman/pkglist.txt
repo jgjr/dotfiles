@@ -2,8 +2,10 @@ adobe-source-sans-pro-fonts
 adobe-source-serif-pro-fonts
 alsa-utils
 apvlv
+arc-gtk-theme
 arc-icon-theme
 arc-kde
+arc-solid-gtk-theme
 autoconf
 automake
 bash
@@ -25,6 +27,7 @@ cryptsetup
 ctags
 cups
 cups-pdf
+deepin-gtk-theme
 deepin-icon-theme
 device-mapper
 dhcpcd
@@ -41,6 +44,7 @@ file
 filesystem
 filezilla
 findutils
+flat-remix-gtk-git
 flex
 gawk
 gcc
