@@ -1,4 +1,4 @@
 #!/bin/bash
 #A small script to open a new terminal window at the current directory
 
-urxvt -cd $PWD &
+urxvt -cd "$PWD" &

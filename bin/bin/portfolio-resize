@@ -1,0 +1,4 @@
+#!/bin/bash
+# Resize stills and banner images and convert to JPG, remove PNGs
+
+ mogrify -resize 1920x1920 -quality 80 -format jpg *banner*; mogrify -resize 1000x1000 -quality 80 -format jpg *still*; rm *.png

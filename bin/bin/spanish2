@@ -1,0 +1,10 @@
+#!/usr/bin/php
+<?php
+$word = $argv[1];
+$path = "http://www.spanishdict.com/translate/$word";
+$site = file_get_contents($path);
+$search = '/spanishdict\.com\/translate\/[a-z]*\"\>([a-z]*)/';
+$results = [];
+preg_match($search, $site, $results);
+print_r($results);
+?>

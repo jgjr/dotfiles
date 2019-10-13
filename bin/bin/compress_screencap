@@ -1,0 +1,46 @@
+#!/usr/bin/env python3
+
+import os
+import sys
+import subprocess
+import time
+import json
+
+
+old_file = os.path.abspath(sys.argv[1])
+
+try: 
+    old_file_info = subprocess.run(['ffprobe', '-v', 'quiet', '-print_format', 'json', '-show_streams', old_file], stdout=subprocess.PIPE).stdout.decode('utf-8')
+    info = json.loads(old_file_info)
+    bit_rate = None
+    tags = []
+    for stream in info['streams']:
+        if stream['codec_type'] == 'video':
+            bit_rate = int(stream['bit_rate'])
+            break
+except Exception as e:
+    print('Could not process streams')
+    sys.exit(1)
+if bit_rate is None:
+    print('Could not get a video stream')
+    sys.exit(1)
+if bit_rate < 1000000:
+    print('No need to compress')
+    sys.exit(1)
+
+[file_name, file_extension] = os.path.splitext(old_file)
+atime = os.path.getatime(old_file)
+mtime = os.path.getmtime(old_file)
+ctime = os.path.getctime(old_file)
+
+new_file = os.path.abspath(f'{file_name}_reduced{file_extension}')
+
+local_time = time.localtime(mtime)
+time_string = time.strftime('%Y-%m-%d %H:%M:%S', local_time)
+command = f'ffmpeg -i "{old_file}" -map_metadata 0 -metadata title="{time_string}" -crf 23  "{new_file}"'
+subprocess.run(command, shell=True)
+os.utime(new_file, (atime, mtime))
+os.remove(old_file)
+os.rename(new_file, old_file)
+
+print('File compressed')

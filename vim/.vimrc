@@ -65,6 +65,8 @@ inoremap <C-s>      <ESC>:w<CR>
 " Page up and down are too far away
 nmap <C-j>          <C-f>
 nmap <C-k>          <C-b>
+" nmap <C-j>          10j
+" nmap <C-k>          10k
 
 " Better copy and paste
 vnoremap <silent> y y`]

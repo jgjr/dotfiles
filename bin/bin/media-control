@@ -1,0 +1,102 @@
+#!/bin/bash
+
+if pgrep -x "vlc" > /dev/null
+then
+    active="vlc"
+elif pgrep -x "cmus" > /dev/null
+then
+    active="cmus"
+else
+    active="none"
+fi
+
+command=$1
+
+case $active in
+"vlc")
+    case $command in
+    "playpause")
+        dbus-send --type=method_call --dest=org.mpris.MediaPlayer2.vlc /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+        ;; 
+    "next")
+        dbus-send --type=method_call --dest=org.mpris.MediaPlayer2.vlc /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+        ;; 
+    "prev")
+        dbus-send --type=method_call --dest=org.mpris.MediaPlayer2.vlc /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+        ;; 
+    "stop")
+        dbus-send --type=method_call --dest=org.mpris.MediaPlayer2.vlc /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop
+        ;; 
+    "info")
+        vlc_status=$(qdbus org.mpris.MediaPlayer2.vlc /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlaybackStatus)
+        vlc_info=$(qdbus org.mpris.MediaPlayer2.vlc /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Metadata | grep "xesam:title:" | cut -c 14-)
+        if [ "$vlc_status" = "Playing" ]; then
+            echo " $vlc_info"
+        elif [ "$vlc_status" = "Paused" ]; then
+            echo " $vlc_info"
+        elif [ "$vlc_status" = "Stopped" ]; then
+            echo " $vlc_info"
+        else
+            echo ""
+        fi
+        ;;
+    esac
+    ;;
+"cmus")
+    case $command in
+    "playpause")
+        cmus-remote -u
+        ;; 
+    "next")
+        cmus-remote -n
+        ;; 
+    "prev")
+        cmus-remote -r
+        ;; 
+    "stop")
+        cmus-remote -s
+        ;; 
+    "info")
+        cmus_info=$(cmus-remote -Q)
+        cmus_status=$(echo "$cmus_info" | grep -v "set " | grep -v "tag " | grep "status " | cut -d ' ' -f 2)
+        
+        if [ "$cmus_status" = "playing" ] || [ "$cmus_status" = "paused" ] || [ "$cmus_status" = "stopped" ]; then
+            cmus_artist=$(echo "$cmus_info" | grep -v 'set ' | grep " artist " | cut -d ' ' -f 3-)
+            cmus_title=$(echo "$cmus_info" | grep -v 'set ' | grep " title " | cut -d ' ' -f 3-)
+            
+            if [ ${#cmus_artist} -gt 20 ]; then
+                cmus_artist="${cmus_artist:0:20}…"
+            fi
+
+            if [ ${#cmus_title} -gt 20 ]; then
+                cmus_title="${cmus_title:0:20}…"
+            fi
+            
+            info_string="$cmus_artist - $cmus_title"
+
+            if [ "$cmus_status" = "playing" ]; then
+                echo " $info_string"
+            elif [ "$cmus_status" = "paused" ]; then
+                echo " $info_string"
+            elif [ "$cmus_status" = "stopped" ]; then 
+                echo " $info_string"
+            else
+                echo ""
+            fi
+        else
+            echo ""
+        fi
+        ;;
+    esac
+    ;;
+*)
+    case $command in
+    "playpause")
+        urxvt -e cmus
+        ;; 
+    "info")
+        echo ""
+        ;; 
+    esac
+    ;;
+esac

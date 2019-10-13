@@ -1,10 +1,10 @@
-mkcd ()
+mkcd()
 {
     mkdir -p -- "$1" &&
       cd -P -- "$1"
 }
 
-mvcd ()
+mvcd()
 {
     mv $1 $2 &&
       cd "$2"
@@ -20,4 +20,14 @@ gitdone()
     git add . --all;
     git commit -m "$1";
     git push;
+}
+
+proj()
+{
+    cd ~/projects/"$1"
+}
+
+terminal-with()
+{
+    urxvt -e $1
 }

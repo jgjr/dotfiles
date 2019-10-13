@@ -1,0 +1,30 @@
+#!/usr/bin/env python3
+
+import subprocess
+import sys
+import os
+from shutil import copyfile
+
+command = f'find . -type f'
+
+directory = 'moved'
+d = 1
+
+while os.path.isdir(directory):
+    directory = f'moved_{d}'
+    d += 1
+
+os.mkdir(directory)
+
+files = subprocess.run(command, shell=True, stdout=subprocess.PIPE).stdout.decode('utf-8').splitlines()
+
+i = 1
+
+for source in files:
+    extension = os.path.splitext(source)[1]
+    dest = f'{directory}/{i}{extension}'
+    print(source, dest)
+    copyfile(source, dest)
+    i += 1
+
+print('Done')

@@ -1,35 +1,44 @@
 "urxvt"
-  Mod4 + Return
+  Control + Shift + Alt + Return
 
 "chromium"
-  Mod4 + Shift + a
+  Control + Shift + Alt + a
 
 "chromium --incognito"
-  Mod4 + Shift + p
+  Control + Shift + Alt + p
 
 "rofi -show run"
-  Mod4 + d
+  Control + Shift + Alt + d
 
 "~/.config/i3lock/lock.sh"
-  Mod4 + Shift + s
-
-"urxvt -e ranger"
-  Mod4 + Shift + z
-
-"Thunar"
-  Mod4 + Shift + x
-
-"thunderbird"
-  Mod4 + Shift + t
-
-"keepassx2"
-  Mod4 + Shift + k
+  m:0x0 + c:202
 
 "~/.config/i3lock/lock.sh; systemctl suspend"
-  Mod4 + Shift + w
+  m:0x0 + c:201
+
+"killall $BROWSER; killall vlc"
+  m:0x0 + c:200
+
+"urxvt -e ranger"
+  Control + Shift + Alt + z
+
+"Thunar"
+  Control + Shift + Alt + x
+
+"urxvt -e neomutt"
+  Control + Shift + Alt + m
+
+"urxvt -e khal interactive"
+  Control + Shift + Alt + c
+
+"keepassx2"
+  Control + Shift + Alt + k
 
 "gnome-calculator"
-  Mod4 + Shift + g
+  Control + Shift + Alt + g
+
+"$BROWSER ~/documents/character_codes.html"
+  Control + Shift + Alt + t
 
 "light -A 10"
   XF86MonBrightnessUp
@@ -46,14 +55,17 @@
 "pactl set-sink-mute @DEFAULT_SINK@ toggle"
    XF86AudioMute
 
-"clementine --play-pause"
+"~/bin/media-control playpause"
   XF86AudioPlay
 
-"clementine --next"
+"~/bin/media-control next"
   XF86AudioNext
 
-"clementine --previous"
+"~/bin/media-control prev"
   XF86AudioPrev
 
-"scrot -d .25  -e 'mv $f ~/pictures/screenshots/'"
+"~/bin/media-control stop"
+  XF86AudioStop
+
+"scrot -d 0.25  -e 'mv $f ~/pictures/screenshots/'; notify-send 'Screenshot taken'"
   Print

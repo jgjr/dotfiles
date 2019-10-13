@@ -1,5 +1,6 @@
 export BROWSER='chromium'
 export EDITOR='vim'
-export PATH=~/.npm-global/bin:$PATH:/opt/:/home/john/bin/:/home/john/.gem/ruby/2.4.0/bin:/home/john/.local/bin
+export LOCAL=1
+export PATH=~/.npm-global/bin:$PATH:/opt/:/home/john/bin/:/home/john/.gem/ruby/2.4.0/bin:/home/john/.local/bin:/home/john/.ebcli-virtual-env/executables
 export PS1="[\A \u@\h \[\e[36m\]\W\[\e[m\]] "
 

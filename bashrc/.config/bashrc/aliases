@@ -49,11 +49,12 @@ alias fe='feh -g 1920x1080 --image-bg black'
 alias youtubemp3='youtube-dl -x --audio-format mp3'
 alias spot='spotify --force-device-scale-factor=1.0000001'
 alias startcups='systemctl start org.cups.cupsd.service'
+alias visualizer='cava'
+alias diskusage='ncdu'
 
 alias strongpassword='gpg --gen-random --armor 1 14 | sed "s/.$//"'
 alias webresize='mogrify -strip -resize 1920x1920 -quality 80%'
 
 alias whatsmyip='curl ipinfo.io/ip'
 
-alias passwordsdb='dropbox_upload ~/documents/Notes/passwords.kdbx "/passwords.kdbx"'
-alias proj='cd ~/projects'
+alias passwordsdb='dropbox-upload ~/documents/Notes/passwords.kdbx "/passwords.kdbx"'

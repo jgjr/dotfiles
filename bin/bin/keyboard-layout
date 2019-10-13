@@ -1,0 +1,22 @@
+#!/bin/bash
+
+command=$1
+current_layout=$(setxkbmap -print -verbose 10 | grep "layout:" | cut -c 13-)
+layouts=(us ara es)
+declare -A layouts_indexed
+layouts_indexed=([us]=0 [ara]=1 [es]=2)
+last_layout=2
+
+case $command in
+"switch")
+    current_index=${layouts_indexed[$current_layout]}
+    next_index=$(($current_index + 1))
+    if (($next_index > $last_layout)); then
+        next_index=0
+    fi
+    setxkbmap ${layouts[$next_index]}
+    ;;
+"info")
+    echo "$current_layout"
+    ;;
+esac

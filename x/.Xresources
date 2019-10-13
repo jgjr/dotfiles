@@ -1,4 +1,4 @@
-URxvt.font: xft:DejaVu Sans Mono:style=Book:size=14
+URxvt.font: xft:DejaVu Sans Mono:style=Book:size=13
 URxvt.scrollBar: false
 
 URxvt.url-launcher:   /usr/bin/chromium
