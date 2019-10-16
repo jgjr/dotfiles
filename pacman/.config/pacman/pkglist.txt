@@ -193,6 +193,7 @@ texinfo
 thunar
 thunar-archive-plugin
 thunar-media-tags-plugin
+tor
 transcribe
 transmission-gtk
 ttf-dejavu
